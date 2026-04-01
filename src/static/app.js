@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
     technology: { label: "Technology", color: "#e8eaf6", textColor: "#3949ab" },
   };
 
+  // School name used in share messages
+  const SCHOOL_NAME = "Mergington High School";
+
   // State for activities and filters
   let allActivities = {};
   let currentFilter = "all";
@@ -484,7 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function createShareButtonsHtml(activityName, activityDescription) {
     const shareUrl = createShareUrl(activityName);
     const shareText = encodeURIComponent(
-      `Check out ${activityName} at Mergington High School! ${activityDescription}`
+      `Check out ${activityName} at ${SCHOOL_NAME}! ${activityDescription}`
     );
     const encodedUrl = encodeURIComponent(shareUrl);
 
@@ -644,6 +647,8 @@ document.addEventListener("DOMContentLoaded", () => {
             copyButton.classList.remove("share-btn-copied");
             copyButton.title = "Copy link";
           }, 2000);
+        }).catch(() => {
+          showMessage("Could not copy link. Please copy it from the address bar.", "error");
         });
       });
     }
